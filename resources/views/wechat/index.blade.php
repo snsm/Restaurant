@@ -10,6 +10,46 @@
     <link rel="stylesheet" href="{{ elixir('build/wechat/css/flat.css') }}">
     <link rel="stylesheet" href="{{ elixir('build/wechat/css/font-awesome.css') }}">
 
+    <style rel="stylesheet">
+        .sidebar-nav nav {
+            background-color: #ffffff;
+            box-shadow: inset -10px 0px 40px #ffffff;
+        }
+        .sidebar-nav nav dl dd.active {
+            color: #fff;
+            background-color: #52b13c;
+        }
+        .sidebar-nav nav dl dd {
+            border-bottom-color: #ddd;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+        }
+        .footFix button {
+            background-color: #52b13c;
+        }
+        .panel-default {
+            border-color: #dddddd;
+            background-color: #f5f5f5;
+        }
+        .panel {
+            margin-bottom: 3px;
+            border: 1px solid #f5f5f5;
+            background-color: #f5f5f5;
+            border-radius: 0px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+        .sidebar-nav nav dl dd a {
+            text-decoration: none;
+        }
+        .panel-body {
+            padding-top: 12px;
+            padding-right: 15px;
+            padding-bottom: 12px;
+            padding-left: 15px;
+        }
+    </style>
+
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -18,26 +58,37 @@
 
 </head>
 <body>
+<div class="panel panel-default">
+    <div class="panel-body">
+        全民餐厅 菜单
+    </div>
+</div>
+
 <div id="wrapper" class="viewer">
+
     <div id="sidebar-wrapper">
         <div class="well sidebar-nav">
             <nav id="J_menuList" class="nav nav-list">
             </nav>
         </div>
     </div>
+
     <div id="page-content-wrapper" class="">
         <div class="page-content">
             <div class="container" id="J_list_Container">
             </div>
         </div>
     </div>
+
     <footer class="footFix footLeft">
         <button id="myOrder" class="btn_change">
-            菜篮子
+            购物车
             <!--span class="num">9</span-->
         </button>
     </footer>
+
 </div>
+
 <div id="wrapper2" class="viewer wrapper countpage clearfix" style="display:none">
     <section class="order_title">
         <div class="container" id="">
@@ -185,21 +236,21 @@
 
         setTimeout(function () {
             iG.items={
-                "肉品":[{id:"1",name:"纯瘦肉",cls:"肉品",price:"15",sels:"45",imageUrl:"images/1.jpg"},
+                "湘菜":[{id:"1",name:"纯瘦肉",cls:"肉品",price:"15",sels:"45",imageUrl:"images/1.jpg"},
                     {id:"2",name:"猪耳朵",cls:"肉品",price:"23",sels:"75",imageUrl:"images/2.jpg"},
                     {id:"3",name:"牛肉",cls:"肉品",price:"45",sels:"36",imageUrl:"images/3.jpg"},
                     {id:"4",name:"牛肉和牛肚",cls:"肉品",price:"85",sels:"26",imageUrl:"images/4.jpg"},
                     {id:"5",name:"排骨",cls:"肉品",price:"63",sels:"12",imageUrl:"images/5.jpg"},
                     {id:"6",name:"猪脚",cls:"肉品",price:"56",sels:"32",imageUrl:"images/6.jpg"}
                 ],
-                "水产":[{id:"7",name:"罗非鱼",cls:"水产",price:"45",sels:"12",imageUrl:"images/7.jpg"},
+                "川菜":[{id:"7",name:"罗非鱼",cls:"水产",price:"45",sels:"12",imageUrl:"images/7.jpg"},
                     {id:"8",name:"杭州虾",cls:"水产",price:"153",sels:"8",imageUrl:"images/8.jpg"},
                     {id:"9",name:"海鲜套餐",cls:"水产",price:"255",sels:"30",imageUrl:"images/9.jpg"},
                     {id:"10",name:"贝壳",cls:"水产",price:"188",sels:"8",imageUrl:"images/10.jpg"},
                     {id:"11",name:"青鱼",cls:"水产",price:"156",sels:"8",imageUrl:"images/11.jpg"},
                     {id:"12",name:"黄鱼",cls:"水产",price:"120",sels:"8",imageUrl:"images/12.jpg"}
                 ],
-                "蔬菜":[{id:"13",name:"飘菜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/13.jpg"},
+                "粤菜":[{id:"13",name:"飘菜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/13.jpg"},
                     {id:"14",name:"苦瓜",cls:"蔬菜",price:"154",sels:"524",imageUrl:"images/14.jpg"},
                     {id:"15",name:"西红柿辣椒黄瓜套餐",cls:"蔬菜",price:"151",sels:"524",imageUrl:"images/15.jpg"},
                     {id:"16",name:"黄瓜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/16.jpg"},
@@ -208,11 +259,11 @@
                     {id:"19",name:"蔬菜套餐1",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/19.jpg"},
                     {id:"20",name:"蔬菜套餐2",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/20.jpg"}
                 ],
-                "干货杂粮":[{id:"21",name:"大米",cls:"干货杂粮",price:"45",sels:"524",imageUrl:"images/21.jpg"},
+                "浙菜":[{id:"21",name:"大米",cls:"干货杂粮",price:"45",sels:"524",imageUrl:"images/21.jpg"},
                     {id:"22",name:"紫米",cls:"干货杂粮",price:"9",sels:"524",imageUrl:"images/22.jpg"},
                     {id:"23",name:"玉米",cls:"干货杂粮",price:"22",sels:"524",imageUrl:"images/23.jpg"}
                 ],
-                "糕点":[{id:"24",name:"糕点",cls:"糕点",price:"152",sels:"12",imageUrl:"images/24.jpg"},
+                "闽菜":[{id:"24",name:"糕点",cls:"糕点",price:"152",sels:"12",imageUrl:"images/24.jpg"},
                     {id:"25",name:"糕点",cls:"糕点",price:"154",sels:"16",imageUrl:"images/25.jpg"},
                     {id:"26",name:"糕点",cls:"糕点",price:"151",sels:"18",imageUrl:"images/26.jpg"},
                     {id:"27",name:"糕点",cls:"糕点",price:"152",sels:"19",imageUrl:"images/27.jpg"},
