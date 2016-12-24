@@ -52,4 +52,6 @@ elixir(function(mix) {
     mix.copy('resources/assets/admin/images', 'public/build/images');
     mix.copy('resources/assets/admin/layer', 'public/build/layer');
 
+    mix.copy('resources/assets/wechat', 'public/build/wechat');
+
 });

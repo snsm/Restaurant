@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//前台
+Route::group(['middleware' => ['web']],function(){
+
+    //前端微信
+    Route::group(['prefix'=>'wechat','namespace'=>'Wechat'],function(){
+
+        //首页
+        Route::get('/index', ['as' => 'wechat.index', 'uses' => 'IndexController@index']);
+
+    });
+});
+
 //后台
 Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], function(){
     //跳转登陆页
