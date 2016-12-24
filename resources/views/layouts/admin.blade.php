@@ -44,10 +44,10 @@
         <div class="am-offcanvas-bar admin-offcanvas-bar">
             <ul class="am-list admin-sidebar-list">
                 <li><a href="{{ route('admin.index') }}"><span class="am-icon-home"></span> 首页</a></li>
-                <li><a href=""><span class="am-icon-pencil-square-o"></span> 用户管理</a></li>
-                <li><a href=""><span class="am-icon-pencil-square-o"></span> 菜品分类</a></li>
-                <li><a href=""><span class="am-icon-pencil-square-o"></span> 菜品管理</a></li>
-                <li><a href=""><span class="am-icon-pencil-square-o"></span> 订单管理</a></li>
+                <li><a href="{{ route('admin.user-list') }}"><span class="am-icon-pencil-square-o"></span> 用户管理</a></li>
+                <li><a href="{{ route('admin.menu-sort-list') }}"><span class="am-icon-pencil-square-o"></span> 菜品分类</a></li>
+                <li><a href="{{ route('admin.menu-list') }}"><span class="am-icon-pencil-square-o"></span> 菜品管理</a></li>
+                <li><a href="{{ route('admin.order-list') }}"><span class="am-icon-pencil-square-o"></span> 订单管理</a></li>
                 <li><a href="index.html"><span class="am-icon-pencil-square-o"></span> 生成二维码</a></li>
                 <li><a href=""><span class="am-icon-pencil-square-o"></span> 消息推送</a></li>
                 <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>

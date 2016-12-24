@@ -27,5 +27,19 @@ Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], f
     //首页
     Route::get('index', ['as' => 'admin.index', 'uses' => 'AdminController@index']);
 
+    //用户管理列表
+    Route::get('/user-list', ['as' => 'admin.user-list', 'uses' => 'UserController@index']);
+
+    //菜品分类管理列表
+    Route::get('/menu-sort-list', ['as' => 'admin.menu-sort-list', 'uses' => 'MenuController@index']);
+
+    //菜品管理列表
+    Route::get('/menu-list', ['as' => 'admin.menu-list', 'uses' => 'MenuController@menuList']);
+
+    //订单管理列表
+    Route::get('/order-list', ['as' => 'admin.order-list', 'uses' => 'OrderController@index']);
+    //订单详情列表
+    Route::get('/order-detail-list', ['as' => 'admin.order-detail-list', 'uses' => 'OrderController@orderDetail']);
+
 });
 
