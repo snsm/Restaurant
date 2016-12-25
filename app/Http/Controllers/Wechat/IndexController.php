@@ -10,4 +10,9 @@ class IndexController extends Controller
     public function Index(){
         return view('wechat.index');
     }
+
+    public function order(){
+        return view('wechat.order');
+    }
+
 }

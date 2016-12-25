@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//前台
+//前台微信*************************************************
 Route::group(['middleware' => ['web']],function(){
 
     //前端微信
@@ -23,11 +23,13 @@ Route::group(['middleware' => ['web']],function(){
 
         //首页
         Route::get('/index', ['as' => 'wechat.index', 'uses' => 'IndexController@index']);
+        //订单页
+        Route::get('/order', ['as' => 'wechat.order', 'uses' => 'IndexController@order']);
 
     });
 });
 
-//后台
+//后台*************************************************
 Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], function(){
     //跳转登陆页
     Route::get('/', function () { return view('admin.login'); });
