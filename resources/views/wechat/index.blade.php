@@ -48,6 +48,11 @@
             padding-bottom: 12px;
             padding-left: 15px;
         }
+        .badge {
+            background-color: #eb3634;
+            padding: 2px 5px;
+            font-weight: normal;
+        }
     </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -436,8 +441,7 @@
         for(var i in _list){
             active = "";
             if(_list[i]===iG.indexMenu)active = "active";
-            menuHtml += "<dd class=\""+active+"\"><a data_name=\""+ _list[i] +"\">"+ _list[i] +"</a></dd>"
-
+            menuHtml += "<dd class=\""+active+"\"><a data_name=\""+ _list[i] +"\">"+ _list[i] +"</a> <h6 class='badge'>0</h6></dd>"
         }
         menuHtml += "</dl>";
         $("#J_menuList").html(menuHtml);
