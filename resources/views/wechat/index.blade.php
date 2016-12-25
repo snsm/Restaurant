@@ -27,10 +27,6 @@
         .footFix button {
             background-color: #52b13c;
         }
-        .panel-default {
-            border-color: #dddddd;
-            background-color: #f5f5f5;
-        }
         .panel {
             margin-bottom: 3px;
             border: 1px solid #f5f5f5;
@@ -38,6 +34,11 @@
             border-radius: 0px;
             -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            z-index: 1000;
+        }
+        .well,.row  {
+            margin-top: 50px;
         }
         .sidebar-nav nav dl dd a {
             text-decoration: none;
@@ -63,15 +64,16 @@
 
 </head>
 <body>
-<div class="panel panel-default">
-    <div class="panel-body">
-        全民餐厅 菜单
-    </div>
-</div>
-
 <div id="wrapper" class="viewer">
 
     <div id="sidebar-wrapper">
+
+        <div class="panel">
+            <div class="panel-body">
+                全民餐厅
+            </div>
+        </div>
+
         <div class="well sidebar-nav">
             <nav id="J_menuList" class="nav nav-list">
             </nav>
@@ -80,6 +82,13 @@
 
     <div id="page-content-wrapper" class="">
         <div class="page-content">
+
+            <div class="panel" style="width: 100%">
+                <div class="panel-body">
+                    菜单
+                </div>
+            </div>
+
             <div class="container" id="J_list_Container">
             </div>
         </div>
@@ -262,6 +271,7 @@
                     {id:"17",name:"黄豆",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/17.jpg"},
                     {id:"18",name:"白苦瓜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/18.jpg"},
                     {id:"19",name:"蔬菜套餐1",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/19.jpg"},
+                    {id:"20",name:"蔬菜套餐2",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/20.jpg"},
                     {id:"20",name:"蔬菜套餐2",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/20.jpg"}
                 ],
                 "浙菜":[{id:"21",name:"大米",cls:"干货杂粮",price:"45",sels:"524",imageUrl:"images/21.jpg"},
@@ -443,6 +453,9 @@
             if(_list[i]===iG.indexMenu)active = "active";
             menuHtml += "<dd class=\""+active+"\"><a data_name=\""+ _list[i] +"\">"+ _list[i] +"</a> <h6 class='badge'>0</h6></dd>"
         }
+
+        menuHtml += "<dd class=\""+active+"\"><a>个人中心</a></dd>"
+
         menuHtml += "</dl>";
         $("#J_menuList").html(menuHtml);
     }
