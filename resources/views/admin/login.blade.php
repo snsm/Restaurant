@@ -20,18 +20,39 @@
 <div class="am-g">
     <div class="am-u-lg-6 am-u-md-8 am-u-sm-centered">
 
-        <form method="post" class="am-form">
-            <label for="email">手机:</label>
-            <input type="email" name="" id="email" value="">
-            <br>
-            <label for="password">密码:</label>
-            <input type="password" name="" id="password" value="">
-            <br>
-            <div class="am-cf">
-                <input type="submit" name="" value="登 录" class="am-btn am-btn-primary am-btn-sm am-fl">
-            </div>
-        </form>
+        {!! Form::open(['url'=>'admin/login','method'=>'POST','class'=>'am-form','data-am-validator']) !!}
+        <fieldset>
+
+        <div class="am-form-group">
+        {!! Form::label('mobile','手机号:',['for'=>'mobile']) !!}
+        {!! Form::number('mobile',null,['id'=>'mobile','placeholder'=>'输入手机号','required'=>'required','class'=>'js-pattern-mobile']) !!}
+        </div>
+
+        <div class="am-form-group">
+            <label for="doc-vld-pwd-1">密码:</label>
+            <input type="password" name="password" id="doc-vld-pwd-1" placeholder="输入密码" pattern="^\d{6}$" required/>
+        </div>
+
+        <div class="am-cf">
+            {!! Form::submit('登 录',['class'=>'am-btn am-btn-primary am-btn-sm am-fl']) !!}
+        </div>
+
+        </fieldset>
+        {!! Form::close() !!}
+
+        @if (count($errors) > 0)
+        <div class="am-alert am-alert-danger" data-am-alert>
+            <button type="button" class="am-close">&times;</button>
+            @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+            @endforeach
+        </div>
+        @endif
+
     </div>
+
 </div>
 </body>
+<script src="{{ elixir('js/jquery.js') }}"></script>
+<script src="{{ elixir('js/all.js') }}"></script>
 </html>
