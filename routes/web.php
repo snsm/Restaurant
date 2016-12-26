@@ -30,13 +30,15 @@ Route::group(['middleware' => ['web']],function(){
 });
 
 //后台*************************************************
-Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], function(){
-    //跳转登陆页
-    Route::get('/', function () { return view('admin.login'); });
 
-    //登陆
-    Route::get('login','AdminController@login');
-    Route::post('login','AdminController@signin');
+//跳转登陆页
+Route::get('/', function () { return view('admin.login'); });
+
+//登陆
+Route::get('admin/login','Admin\AdminController@login');
+Route::post('admin/login','Admin\AdminController@signin');
+
+Route::group(['middleware' => ['web'=>'admin.login'],'prefix'=>'admin','namespace'=>'Admin'], function(){
 
     //首页
     Route::get('index', ['as' => 'admin.index', 'uses' => 'AdminController@index']);

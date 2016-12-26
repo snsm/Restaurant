@@ -7,6 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ROLE_MANAGE = 30;
+    const ROLE_USER = 10;
+
+    const SEX_MAN = 1;
+    const SEX_WOMAN = 2;
+
     use Notifiable;
 
     /**
@@ -26,4 +32,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function sexLabelList()
+    {
+        return [
+            self::SEX_MAN => '男',
+            self::SEX_WOMAN => '女'
+        ];
+    }
+
+    public function getSexTextAttribute()
+    {
+        return empty($this->sex) ? '' : self::sexLabelList()[$this->sex];
+    }
+
 }
