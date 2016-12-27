@@ -45,6 +45,9 @@ Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], f
         //首页
         Route::get('index', ['as' => 'admin.index', 'uses' => 'AdminController@index']);
 
+        //退出
+        Route::get('logout', ['as' => 'admin.logout', 'uses' => 'AdminController@logout']);
+
         //用户管理列表
         Route::get('/user-list', ['as' => 'admin.user-list', 'uses' => 'UserController@index']);
 

@@ -1,4 +1,4 @@
-<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-{{ $list['id'] }}">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">
             <label>修改用户</label>
@@ -11,10 +11,10 @@
                     <div class="am-form-group" style="text-align: left;">
                         <label for="doc-vld-name-2">顾客姓名：</label>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="id" value="">
-                        <input type="text" id="doc-vld-name-2"  placeholder="输入顾客姓名" name="name" value="陈小龙" required/>
+                        <input type="hidden" name="id" value="{{ $list['id'] }}">
+                        <input type="text" id="doc-vld-name-2"  placeholder="输入顾客姓名" name="name" value="{{ $list['name'] }}" required/>
                         <label for="doc-vld-name-2">顾客手机号：</label>
-                        <input type="number" id="doc-vld-name-2" placeholder="输入手机号" name="mobile" value="" required/>
+                        <input type="number" id="doc-vld-name-2" placeholder="输入手机号" name="mobile" value="{{ $list['mobile'] }}" required/>
                     </div>
                     <button class="am-btn am-btn-secondary" type="submit">提交</button>
                 </fieldset>

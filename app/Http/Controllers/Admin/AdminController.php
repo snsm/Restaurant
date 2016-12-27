@@ -39,8 +39,16 @@ class AdminController extends Controller
 
     public function index()
     {
-        //Cache::pull('access_token');
         return view('admin.index');
+    }
+
+    public function logout(Request $request)
+    {
+        Cache::pull('access_token');
+        $request->session()->flush();
+        $request->session()->regenerate();
+
+        return redirect('/admin/login');
     }
 
 }

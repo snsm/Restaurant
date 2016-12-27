@@ -17,23 +17,23 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($user as $list)
                             <tr>
-                                <td>1</td>
-                                <td><img src="" width="30"></td>
-                                <td>昵称</td>
-                                <td>陈小龙</td>
-                                <td>男</td>
-                                <td>13480731740</td>
-                                <td>2016-12-25</td>
+                                <td>{{ $list['id'] }}</td>
+                                <td><img src="{{ $list['headimgurl'] }}" width="30"></td>
+                                <td>{{ $list['nickname'] }}</td>
+                                <td>{{ $list['name'] }}</td>
+                                <td>{{ $list['sex_text'] }}</td>
+                                <td>{{ $list['mobile'] }}</td>
+                                <td>{{ $list['created_at'] }}</td>
                                 <td>
-                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 263}">修改</button>
+                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $list['id'] }}', closeViaDimmer: 0, width: 400, height: 263}">修改</button>
                                     @include('include.admin._userUpdate')
 
                                     <a href="#" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
                                 </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
