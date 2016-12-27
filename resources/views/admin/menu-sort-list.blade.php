@@ -24,40 +24,27 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <?php $i=0; ?>
+                        @foreach($sort as $list)
+                            <?php $i++; ?>
                             <tr>
-                                <td>1</td>
-                                <td>粤菜</td>
-                                <td><a href="#"><span class="am-badge am-badge-success">3</span></a></td>
+                                <td>{{ $list['id'] }}</td>
+                                <td>{{ $list['title'] }}</td>
+                                <td><a href="#"><span class="am-badge am-badge-success">{{ $result[$i]['count'] }}</span></a></td>
                                 <td>
-                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="sort" value="0" onchange="changeSort(this,1)"/>
-
-                                    <script>
-                                        function changeSort(obj,id){
-                                            var sort = $(obj).val();
-                                            $.post("{{url('')}}",{'_token':'{{csrf_token()}}','id':id,'sort':sort},function(data){
-                                                if(data.status=0){
-                                                    location.href = location.href;
-                                                    layer.msg(data.msg, {icon:5});
-                                                }else{
-                                                    location.href = location.href;
-                                                    layer.msg(data.msg, {icon:6});
-                                                }
-                                            });
-                                        }
-                                    </script>
-
+                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="sort" value="{{ $list['sort'] }}" onchange="changeSort(this,{{ $list['id'] }})"/>
                                 </td>
-                                <td>2016-12-25</td>
+                                <td>{{ $list['created_at'] }}</td>
                                 <td>
-                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 200}">修改</button>
+                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $list['id'] }}', closeViaDimmer: 0, width: 400, height: 200}">修改</button>
                                     @include('include.admin._updateSort')
 
-                                    <a href="javascript:;" onclick="delSort(1)" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
-                                    @include('include.admin._ajax_del')
+                                    <a href="javascript:;" onclick="delSort({{ $list['id'] }})" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
+                                    @include('include.admin._ajax_ins_up_del')
 
                                 </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
 

@@ -32,23 +32,7 @@
                                 <td><a href="#"><span class="am-badge am-badge-success">18</span></a></td>
                                 <td>粤菜</td>
                                 <td>
-                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="menu_order" value="1" onchange="changeSort(this,1)"/>
-
-                                    <script>
-                                        function changeSort(obj,id){
-                                            var menu_order = $(obj).val();
-                                            $.post("",{'_token':'{{csrf_token()}}','id':id,'menu_order':menu_order},function(data){
-                                                if(data.status=0){
-                                                    location.href = location.href;
-                                                    layer.msg(data.msg, {icon:5});
-                                                }else{
-                                                    location.href = location.href;
-                                                    layer.msg(data.msg, {icon:6});
-                                                }
-                                            });
-                                        }
-                                    </script>
-
+                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="menu_order" value="1" onchange="changeMenuSort(this,1)"/>
                                 </td>
                                 <td>2016-12-25</td>
                                 <td>
@@ -56,7 +40,7 @@
                                     @include('include.admin._updateMenu')
 
                                     <a href="javascript:;" onclick="delMenu(1)" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
-                                    @include('include.admin._ajax_del')
+                                    @include('include.admin._ajax_ins_up_del')
 
                                 </td>
                             </tr>

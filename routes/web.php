@@ -53,6 +53,10 @@ Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], f
 
         //菜品分类管理列表
         Route::get('/menu-sort-list', ['as' => 'admin.menu-sort-list', 'uses' => 'MenuController@index']);
+        Route::post('/menu-sort-insert', ['as' => 'admin.menu-sort-insert', 'uses' => 'MenuController@sortInsert']);
+        Route::post('/menu-sort-update', ['as' => 'admin.menu-sort-update', 'uses' => 'MenuController@sortUpdate']);
+        Route::any('/menu-sort-order', ['as' => 'admin.menu-sort-order', 'uses' => 'MenuController@sortOrder']);
+        Route::get('/menu-sort-list/{id}', ['as' => 'admin.menu-sort-delete', 'uses' => 'MenuController@sortDelete']);
 
         //菜品管理列表
         Route::get('/menu-list', ['as' => 'admin.menu-list', 'uses' => 'MenuController@menuList']);

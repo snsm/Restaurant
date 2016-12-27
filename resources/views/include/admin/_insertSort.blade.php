@@ -6,7 +6,7 @@
         </div>
         <div class="am-modal-bd">
 
-            <form action="" method="post" class="am-form" data-am-validator>
+            <form action="{{ route('admin.menu-sort-insert') }}" method="post" class="am-form" data-am-validator>
                 <fieldset>
                     <div class="am-form-group" style="text-align: left;">
                         <label for="doc-vld-name-2">菜品名称：</label>

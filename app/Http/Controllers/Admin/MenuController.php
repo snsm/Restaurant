@@ -2,14 +2,58 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Sort;
+use App\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 
 class MenuController extends Controller
 {
     public function index()
     {
-        return view('admin.menu-sort-list');
+        $sort= Sort::orderBy('sort','desc')->paginate(15);
+        $result =(new Sort())->getSorts();
+        return view('admin.menu-sort-list',compact('sort','result'));
+    }
+
+    public function sortInsert(Request $request){
+        Sort::create([
+            'title' => $request->get('title'),
+        ]);
+        return Redirect::back();
+    }
+
+    public function sortUpdate(Request $request)
+    {
+        $sort = Sort::find($request->get('id'));
+        $sort->title = $request->get('title');
+        $sort->save();
+        return Redirect::back();
+    }
+
+    public function sortOrder(Request $request)
+    {
+        $sort = Sort::find($request->get('id'));
+        $sort->sort = $request->get('sort');
+        $result = $sort->save();
+        if($result){
+            $data = ['status' =>0,'msg' =>'更新成功！'];
+        }else{
+            $data = [ 'status' =>1,'msg' =>'更新失败！'];
+        }
+        return $data;
+    }
+
+    public function sortDelete($id)
+    {
+        $result = Sort::find($id)->delete();
+        if($result){
+            $data = ['status' =>0, 'msg' =>'删除成功！'];
+        }else{
+            $data = ['status' =>1,'msg' =>'删除失败！'];
+        }
+        return $data;
     }
 
     public function menuList()

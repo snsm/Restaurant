@@ -50,7 +50,7 @@
                 <li><a href="{{ route('admin.order-list') }}"><span class="am-icon-pencil-square-o"></span> 订单管理</a></li>
                 <li><a href="index.html"><span class="am-icon-pencil-square-o"></span> 生成二维码</a></li>
                 <li><a href=""><span class="am-icon-pencil-square-o"></span> 消息推送</a></li>
-                <li><a href="#"><span class="am-icon-sign-out"></span> 注销</a></li>
+                <li><a href="{{ route('admin.logout') }}"><span class="am-icon-sign-out"></span> 注销</a></li>
             </ul>
         </div>
     </div>
