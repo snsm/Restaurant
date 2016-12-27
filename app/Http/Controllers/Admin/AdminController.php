@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Cache;
 
 class AdminController extends Controller
 {
@@ -23,6 +24,10 @@ class AdminController extends Controller
         $request->merge([$filed=>$request->get('mobile')]);
 
         if(Auth::attempt($request->only($filed,'password'))){
+
+            $accessToken = [ 'accessToken' => str_random(60),'userMobile' => Auth::user()->mobile,];
+            Cache::add('access_token',$accessToken,60);
+
             if(Auth::user()->role==User::ROLE_MANAGE){
                 return redirect('admin/index');
             }
@@ -34,6 +39,7 @@ class AdminController extends Controller
 
     public function index()
     {
+        //Cache::pull('access_token');
         return view('admin.index');
     }
 
