@@ -7,6 +7,7 @@ use App\Menu;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
 {
@@ -56,8 +57,36 @@ class MenuController extends Controller
         return $data;
     }
 
+
     public function menuList()
     {
         return view('admin.menu-list');
+    }
+
+    public function menuInsert(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $file = $request->file('pictrue');
+            if($file)
+            {
+                $originalName = $file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                $type = $file->getClientMimeType();
+                $realPath = $file->getRealPath();
+
+                $filename = date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
+                Storage::disk('uploads')->put($filename,file_get_contents($realPath));
+
+                Menu::create([
+                    'title' => $request->get('title'),
+                    'description' => $request->get('description'),
+                    'sorts_id' => $request->get('sorts_id'),
+                    'price' => $request->get('price'),
+                    'pictrue' => $filename,
+                ]);
+            }
+            return Redirect::back();
+        }
     }
 }

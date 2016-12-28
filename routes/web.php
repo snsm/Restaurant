@@ -60,6 +60,7 @@ Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], f
 
         //菜品管理列表
         Route::get('/menu-list', ['as' => 'admin.menu-list', 'uses' => 'MenuController@menuList']);
+        Route::post('/menu-list', ['as' => 'admin.menu-insert', 'uses' => 'MenuController@menuInsert']);
 
         //订单管理列表
         Route::get('/order-list', ['as' => 'admin.order-list', 'uses' => 'OrderController@index']);

@@ -49,8 +49,8 @@ elixir(function(mix) {
     mix.version(['css/all.css','css/admin.css', 'js/all.js','js/jquery.js'], 'public/build');
 
     mix.copy('resources/assets/admin/fonts', 'public/build/fonts');
-    mix.copy('resources/assets/admin/images', 'public/build/images');
     mix.copy('resources/assets/admin/layer', 'public/build/layer');
+    mix.copy('resources/assets/images', 'public/build/images');
 
     mix.copy('resources/assets/wechat', 'public/build/wechat');
 

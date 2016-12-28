@@ -20,7 +20,7 @@ class CreateMenusTable extends Migration
             $table->decimal('price')->comment('价格');
             $table->string('pictrue')->comment('图片');
             $table->integer('sorts_id')->comment('类别ID');
-            $table->integer('menu_order')->comment('排序');
+            $table->integer('menu_order')->default(0)->comment('排序');
             $table->timestamps();
             $table->softDeletes();
         });
