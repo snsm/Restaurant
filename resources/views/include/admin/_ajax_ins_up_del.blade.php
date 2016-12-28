@@ -34,7 +34,7 @@
     //更新菜品排序
     function changeMenuSort(obj,id){
         var menu_order = $(obj).val();
-        $.post("",{'_token':'{{csrf_token()}}','id':id,'menu_order':menu_order},function(data){
+        $.post("menu-order",{'_token':'{{csrf_token()}}','id':id,'menu_order':menu_order},function(data){
             if(data.status=0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon:5});
@@ -50,7 +50,7 @@
         layer.confirm('您确定要删除码？',{
             btn:['确定','取消']
         },function(){
-            $.post("{{ url('admin/menus-list') }}/"+id,{'_method':'get'},function(data){
+            $.post("{{ url('admin/menu-list') }}/"+id,{'_method':'get'},function(data){
                 if(data.status=0){
                     location.href = location.href;
                     layer.msg(data.msg, {icon:6});

@@ -93,4 +93,79 @@ class MenuController extends Controller
             return Redirect::back();
         }
     }
+
+    public function menuUpdate(Request $request)
+    {
+        if($request->isMethod('POST'))
+        {
+            $file = $request->file('pictrue');
+            if($file)
+            {
+                // return '更新图片';
+                $originalName = $file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+                $type = $file->getClientMimeType();
+                $realPath = $file->getRealPath();
+
+                $filename = date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
+                Storage::disk('uploads')->put($filename,file_get_contents($realPath));
+
+                $menu = Menu::find($request->get('id'));
+                if(!empty($menu['pictrue'])){
+                    $images = public_path('build/images/') . $menu['pictrue'];
+                    if (file_exists ($images )) {
+                        unlink ($images);
+                    }
+                }
+                $menu->title = $request->get('title');
+                $menu->description = $request->get('description');
+                $menu->sorts_id = $request->get('sorts_id');
+                $menu->price = $request->get('price');
+                $menu->pictrue = $filename;
+                $menu->save();
+
+            }else{
+                //return '不更新图片';
+                $menu = Menu::find($request->get('id'));
+                $menu->title = $request->get('title');
+                $menu->description = $request->get('description');
+                $menu->sorts_id = $request->get('sorts_id');
+                $menu->price = $request->get('price');
+                $menu->save();
+            }
+            return Redirect::back();
+        }
+    }
+
+    public function menuOrder(Request $request)
+    {
+        $sort = Menu::find($request->get('id'));
+        $sort->menu_order = $request->get('menu_order');
+        $result = $sort->save();
+        if($result){
+            $data = ['status' =>0,'msg' =>'更新成功！',];
+        }else{
+            $data = [ 'status' =>1, 'msg' =>'更新失败！',];
+        }
+        return $data;
+    }
+
+    public function menuDelete($id)
+    {
+        $menu = Menu::find($id);
+        if(!empty($menu['pictrue'])){
+            $images = public_path('build/images/') . $menu['pictrue'];
+            if (file_exists ($images )) {
+                unlink ($images);
+            }
+        }
+        $result = $menu->delete();
+        if($result){
+            $data = [ 'status' =>0,'msg' =>'删除成功！',];
+        }else{
+            $data = ['status' =>1,'msg' =>'删除失败！',];
+        }
+        return $data;
+    }
+
 }

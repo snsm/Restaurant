@@ -60,7 +60,10 @@ Route::group(['middleware' => ['web'],'prefix'=>'admin','namespace'=>'Admin'], f
 
         //菜品管理列表
         Route::get('/menu-list', ['as' => 'admin.menu-list', 'uses' => 'MenuController@menuList']);
-        Route::post('/menu-list', ['as' => 'admin.menu-insert', 'uses' => 'MenuController@menuInsert']);
+        Route::post('/menu-insert', ['as' => 'admin.menu-insert', 'uses' => 'MenuController@menuInsert']);
+        Route::post('/menu-update', ['as' => 'admin.menu-update', 'uses' => 'MenuController@menuUpdate']);
+        Route::any('/menu-order', ['as' => 'admin.menu-order', 'uses' => 'MenuController@menuOrder']);
+        Route::get('/menu-list/{id}', ['as' => 'admin.menu-delete', 'uses' => 'MenuController@menuDelete']);
 
         //订单管理列表
         Route::get('/order-list', ['as' => 'admin.order-list', 'uses' => 'OrderController@index']);
