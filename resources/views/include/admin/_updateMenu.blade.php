@@ -1,4 +1,4 @@
-<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-{{ $list['id'] }}">
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-{{ $list->id }}">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">
             <label>更新菜品</label>

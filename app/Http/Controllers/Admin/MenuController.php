@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class MenuController extends Controller
 {
@@ -60,8 +61,9 @@ class MenuController extends Controller
 
     public function menuList()
     {
+        //DB::table(A)leftJoin( B , A.id, = , B.aid )->where("")->select(A.*,B.某列)->get();
         $sorts = Sort::all();
-        $menu = Menu::all();
+        $menu = DB::table('menus')->join('sorts','menus.sorts_id','=','sorts.id')->select('sorts.title as bt','menus.*')->orderBy('menu_order','desc')->paginate(15);
         return view('admin.menu-list',compact('sorts','menu'));
     }
 
