@@ -24,9 +24,9 @@
                         <label for="doc-select-1">属于菜系</label>
                         <select id="doc-select-1" required name="sorts_id">
                             <option value="">选择菜系</option>
-
-                                <option value="1">1</option>
-
+                            @foreach($sorts as $list)
+                                <option value="{{ $list['id'] }}">{{ $list['title'] }}</option>
+                            @endforeach
                         </select>
                         <span class="am-form-caret"></span>
                     </div>

@@ -60,7 +60,9 @@ class MenuController extends Controller
 
     public function menuList()
     {
-        return view('admin.menu-list');
+        $sorts = Sort::all();
+        $menu = Menu::all();
+        return view('admin.menu-list',compact('sorts','menu'));
     }
 
     public function menuInsert(Request $request)

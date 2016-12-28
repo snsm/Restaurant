@@ -24,27 +24,27 @@
                         </tr>
                         </thead>
                         <tbody>
-
+                            @foreach($menu as $list)
                             <tr>
-                                <td>1</td>
-                                <td><img src="" width="55" height="45"></td>
-                                <td>红烧肉</td>
-                                <td><a href="#"><span class="am-badge am-badge-success">18</span></a></td>
+                                <td>{{ $list['id'] }}</td>
+                                <td><img src="{{ url('build/images/'.$list['pictrue'])}}" width="55" height="45"></td>
+                                <td>{{ $list['title'] }}</td>
+                                <td><a href="#"><span class="am-badge am-badge-success">{{ $list['price'] }}</span></a></td>
                                 <td>粤菜</td>
                                 <td>
-                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="menu_order" value="1" onchange="changeMenuSort(this,1)"/>
+                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="menu_order" value="{{ $list['menu_order'] }}" onchange="changeMenuSort(this,{{ $list['id'] }})"/>
                                 </td>
-                                <td>2016-12-25</td>
+                                <td>{{ $list['created_at'] }}</td>
                                 <td>
-                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 400, height: 638}">修改</button>
+                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $list['id'] }}', closeViaDimmer: 0, width: 400, height: 638}">修改</button>
                                     @include('include.admin._updateMenu')
 
-                                    <a href="javascript:;" onclick="delMenu(1)" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
+                                    <a href="javascript:;" onclick="delMenu({{ $list['id'] }})" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
                                     @include('include.admin._ajax_ins_up_del')
 
                                 </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                     {{--BootstrapThreePresenter   <ul class="am-pagination am-pagination-right">  <li class="am-active">--}}
