@@ -1,11 +1,9 @@
 @extends('layouts.wechat')
 
 @section('content')
-
 <div id="wrapper" class="viewer">
 
     <div id="sidebar-wrapper">
-
         <div class="panel">
             <div class="panel-body">
                 全民餐厅
@@ -14,20 +12,52 @@
 
         <div class="well sidebar-nav">
             <nav id="J_menuList" class="nav nav-list">
+                <dl>
+                    <dd class="active"><a>湘菜</a> <h6 class="badge">0</h6></dd>
+                    <dd class=""><a>川菜</a> <h6 class="badge">0</h6></dd>
+                    <dd class=""><a>个人中心</a></dd>
+                </dl>
             </nav>
         </div>
     </div>
 
     <div id="page-content-wrapper" class="">
         <div class="page-content">
-
             <div class="panel">
                 <div class="panel-body">
                     菜单
                 </div>
             </div>
-
             <div class="container" id="J_list_Container">
+                <div class="row">
+
+                    <div class="col-md-4 clearfix foot-items">
+                        <div class="col-xs-4 foot-img"><img src="" class="img-responsive" alt="Responsive image" data_id="1"></div>
+                        <div class="col-xs-6 foot-info"><p><strong>纯瘦肉</strong></p><p class="colred">15元/份</p><p><small>45人买过</small></p></div>
+                        <div class="col-xs-2 icons-pick foot-pick">
+                            <div class="btn_wrap">
+                                <button class="minus" style="display: none;"><strong></strong></button>
+                                <i style="display: none;">0</i>
+                                <button class="list_add list_id_respone" data_id="1"><strong></strong></button>
+                                <em class="fixBig  fake"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 clearfix foot-items">
+                        <div class="col-xs-4 foot-img"><img src="" class="img-responsive" alt="Responsive image" data_id="2"></div>
+                        <div class="col-xs-6 foot-info"><p><strong>猪耳朵</strong></p><p class="colred">23元/份</p><p><small>75人买过</small></p></div>
+                        <div class="col-xs-2 icons-pick foot-pick">
+                            <div class="btn_wrap">
+                                <button class="minus" style="display: none;"><strong></strong></button>
+                                <i style="display: none;">0</i>
+                                <button class="list_add list_id_respone" data_id="2"><strong></strong></button>
+                                <em class="fixBig  fake"></em>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -35,7 +65,6 @@
     <footer class="footFix footLeft">
         <button id="myOrder" class="btn_change">
             购物车
-            <!--span class="num">9</span-->
         </button>
     </footer>
 
@@ -159,11 +188,9 @@
         </div>
     </section>
 </div>
-<div id="loadingView" class="viewer">
-    <div class="container">
-        <div class="col-md-12 clearfix loading">
-        </div>
-    </div>
-</div>
 
+@endsection
+
+@section('script')
+    @include('include.wechat._ajax_sort_menu')
 @endsection

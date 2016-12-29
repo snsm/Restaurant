@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () { return view('wechat.index'); });
 
 //前台微信*************************************************
 Route::group(['middleware' => ['web']],function(){
