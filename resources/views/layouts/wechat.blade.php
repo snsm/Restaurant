@@ -70,6 +70,9 @@
         .foot-pick {
             padding: 20px 0;
         }
+        .sidebar-nav nav dl dd {
+            padding-right: 8px;
+        }
     </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
