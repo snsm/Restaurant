@@ -55,6 +55,21 @@
             padding: 2px 5px;
             font-weight: normal;
         }
+
+        div.foot-items {
+            padding-left: 4px;
+            padding-right: 14px;
+        }
+        .img-responsive {
+            width: 80px;
+            height: 50px;
+        }
+        .footLeft {
+            right: 30px;
+        }
+        .foot-pick {
+            padding: 20px 0;
+        }
     </style>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
