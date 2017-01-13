@@ -34,7 +34,7 @@
     //更新菜品排序
     function changeMenuSort(obj,id){
         var menu_order = $(obj).val();
-        $.post("menu-order",{'_token':'{{csrf_token()}}','id':id,'menu_order':menu_order},function(data){
+        $.post("menu-order",{'_token':'{{csrf_token()}}','menu_id':id,'menu_order':menu_order},function(data){
             if(data.status=0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon:5});

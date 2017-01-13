@@ -61,9 +61,8 @@ class MenuController extends Controller
 
     public function menuList()
     {
-        //DB::table(A)leftJoin( B , A.id, = , B.aid )->where("")->select(A.*,B.某列)->get();
         $sorts = Sort::all();
-        $menu = DB::table('menus')->join('sorts','menus.sorts_id','=','sorts.id')->select('sorts.title as bt','menus.*')->orderBy('menu_order','desc')->paginate(15);
+        $menu = Menu::all();
         return view('admin.menu-list',compact('sorts','menu'));
     }
 
@@ -71,23 +70,21 @@ class MenuController extends Controller
     {
         if($request->isMethod('POST'))
         {
-            $file = $request->file('pictrue');
+            $file = $request->file('menu_pictrue');
             if($file)
             {
-                $originalName = $file->getClientOriginalName();
                 $ext = $file->getClientOriginalExtension();
-                $type = $file->getClientMimeType();
                 $realPath = $file->getRealPath();
 
                 $filename = date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
                 Storage::disk('uploads')->put($filename,file_get_contents($realPath));
 
                 Menu::create([
-                    'title' => $request->get('title'),
-                    'description' => $request->get('description'),
-                    'sorts_id' => $request->get('sorts_id'),
-                    'price' => $request->get('price'),
-                    'pictrue' => $filename,
+                    'menu_name' => $request->get('menu_name'),
+                    'menu_description' => $request->get('menu_description'),
+                    'menu_type' => $request->get('sort_id'),
+                    'menu_price' => $request->get('menu_price'),
+                    'menu_pictrue' => $filename,
                 ]);
             }
             return Redirect::back();
@@ -98,39 +95,37 @@ class MenuController extends Controller
     {
         if($request->isMethod('POST'))
         {
-            $file = $request->file('pictrue');
+            $file = $request->file('menu_pictrue');
             if($file)
             {
                 // return '更新图片';
-                $originalName = $file->getClientOriginalName();
                 $ext = $file->getClientOriginalExtension();
-                $type = $file->getClientMimeType();
                 $realPath = $file->getRealPath();
 
                 $filename = date('Y-m-d-H-i-s').'-'.uniqid().'.'.$ext;
                 Storage::disk('uploads')->put($filename,file_get_contents($realPath));
 
-                $menu = Menu::find($request->get('id'));
-                if(!empty($menu['pictrue'])){
-                    $images = public_path('build/images/') . $menu['pictrue'];
+                $menu = Menu::find($request->get('menu_id'));
+                if(!empty($menu['menu_pictrue'])){
+                    $images = public_path('build/images/') . $menu['menu_pictrue'];
                     if (file_exists ($images )) {
                         unlink ($images);
                     }
                 }
-                $menu->title = $request->get('title');
-                $menu->description = $request->get('description');
-                $menu->sorts_id = $request->get('sorts_id');
-                $menu->price = $request->get('price');
-                $menu->pictrue = $filename;
+                $menu->menu_name = $request->get('menu_name');
+                $menu->menu_description = $request->get('menu_description');
+                $menu->menu_type= $request->get('sort_id');
+                $menu->menu_price = $request->get('menu_price');
+                $menu->menu_pictrue = $filename;
                 $menu->save();
 
             }else{
                 //return '不更新图片';
-                $menu = Menu::find($request->get('id'));
-                $menu->title = $request->get('title');
-                $menu->description = $request->get('description');
-                $menu->sorts_id = $request->get('sorts_id');
-                $menu->price = $request->get('price');
+                $menu = Menu::find($request->get('menu_id'));
+                $menu->menu_name = $request->get('menu_name');
+                $menu->menu_description = $request->get('menu_description');
+                $menu->menu_type = $request->get('sort_id');
+                $menu->menu_price = $request->get('menu_price');
                 $menu->save();
             }
             return Redirect::back();
@@ -139,7 +134,7 @@ class MenuController extends Controller
 
     public function menuOrder(Request $request)
     {
-        $sort = Menu::find($request->get('id'));
+        $sort = Menu::find($request->get('menu_id'));
         $sort->menu_order = $request->get('menu_order');
         $result = $sort->save();
         if($result){
@@ -153,8 +148,8 @@ class MenuController extends Controller
     public function menuDelete($id)
     {
         $menu = Menu::find($id);
-        if(!empty($menu['pictrue'])){
-            $images = public_path('build/images/') . $menu['pictrue'];
+        if(!empty($menu['menu_pictrue'])){
+            $images = public_path('build/images/') . $menu['menu_pictrue'];
             if (file_exists ($images )) {
                 unlink ($images);
             }

@@ -24,22 +24,22 @@
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($menu as $list)
+                        @foreach($menu as $menu_list)
                             <tr>
-                                <td>{{ $list->id }}</td>
-                                <td><img src="{{ url('build/images/'.$list->pictrue)}}" width="55" height="45"></td>
-                                <td>{{ $list->title }}</td>
-                                <td><a href="#"><span class="am-badge am-badge-success">{{ $list->price }}</span></a></td>
-                                <td>{{ $list->bt }}</td>
+                                <td>{{ $menu_list['menu_id'] }}</td>
+                                <td><img src="{{ url('./build/images/'.$menu_list['menu_pictrue']) }}" width="55" height="45"></td>
+                                <td>{{ $menu_list['menu_name'] }}</td>
+                                <td><a href="#"><span class="am-badge am-badge-success">{{ $menu_list['menu_price'] }}</span></a></td>
+                                <td>{{ $menu_list['sort_name'] }}</td>
                                 <td>
-                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="menu_order" value="{{ $list->menu_order }}" onchange="changeMenuSort(this,{{ $list->id }})"/>
+                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="menu_order" value="{{ $menu_list['menu_order'] }}" onchange="changeMenuSort(this,{{ $menu_list['menu_id'] }})"/>
                                 </td>
-                                <td>{{ $list->created_at }}</td>
+                                <td>{{ $menu_list['created_at'] }}</td>
                                 <td>
-                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $list->id }}', closeViaDimmer: 0, width: 400, height: 638}">修改</button>
+                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $menu_list['menu_id'] }}', closeViaDimmer: 0, width: 400, height: 638}">修改</button>
                                     @include('include.admin._updateMenu')
 
-                                    <a href="javascript:;" onclick="delMenu({{ $list->id }})" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
+                                    <a href="javascript:;" onclick="delMenu({{ $menu_list['menu_id'] }})" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
                                     @include('include.admin._ajax_ins_up_del')
 
                                 </td>
