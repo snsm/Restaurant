@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all()->where('role',User::ROLE_USER);
+        $user = User::all()->where('user_role',User::ROLE_USER);
         return view('admin.user-list',compact('user'));
     }
 }

@@ -6,18 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sort extends Model
 {
+    public $primaryKey = 'sort_id';
+
     protected $fillable = [
-        'title', 'sort'
+        'sort_name', 'sort_order'
     ];
 
     protected function menuSorts(){
-        $menu_sorts= Sort::orderBy('sort','desc')->get();
+        $menu_sorts= Sort::orderBy('sort_order','desc')->get();
         $sort[]='';
         foreach($menu_sorts as $list){
             $sort[]=[
-                'id'=>$list['id'],
-                'title'=>$list['title'],
-                'count'=>Menu::whereSorts_id($list['id'])->count(),
+                'id'=>$list['sort_id'],
+                'title'=>$list['sort_name'],
+                'count'=>Menu::whereMenuType($list['sort_id'])->count(),
             ];
         }
         return array_filter($sort);

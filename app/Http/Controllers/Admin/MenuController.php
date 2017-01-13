@@ -14,30 +14,30 @@ class MenuController extends Controller
 {
     public function index()
     {
-        $sort= Sort::orderBy('sort','desc')->paginate(15);
+        $sort= Sort::orderBy('sort_order','desc')->paginate(15);
         $result =(new Sort())->getSorts();
         return view('admin.menu-sort-list',compact('sort','result'));
     }
 
     public function sortInsert(Request $request){
         Sort::create([
-            'title' => $request->get('title'),
+            'sort_name' => $request->get('sort_name'),
         ]);
         return Redirect::back();
     }
 
     public function sortUpdate(Request $request)
     {
-        $sort = Sort::find($request->get('id'));
-        $sort->title = $request->get('title');
+        $sort = Sort::find($request->get('sort_id'));
+        $sort->sort_name = $request->get('sort_name');
         $sort->save();
         return Redirect::back();
     }
 
     public function sortOrder(Request $request)
     {
-        $sort = Sort::find($request->get('id'));
-        $sort->sort = $request->get('sort');
+        $sort = Sort::find($request->get('sort_id'));
+        $sort->sort_order = $request->get('sort_order');
         $result = $sort->save();
         if($result){
             $data = ['status' =>0,'msg' =>'更新成功！'];

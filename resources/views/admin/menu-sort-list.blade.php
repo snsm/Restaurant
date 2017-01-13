@@ -28,18 +28,18 @@
                         @foreach($sort as $list)
                             <?php $i++; ?>
                             <tr>
-                                <td>{{ $list['id'] }}</td>
-                                <td>{{ $list['title'] }}</td>
+                                <td>{{ $list['sort_id'] }}</td>
+                                <td>{{ $list['sort_name'] }}</td>
                                 <td><a href="#"><span class="am-badge am-badge-success">{{ $result[$i]['count'] }}</span></a></td>
                                 <td>
-                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="sort" value="{{ $list['sort'] }}" onchange="changeSort(this,{{ $list['id'] }})"/>
+                                    <input type="text" style="width:30px;height:24px; text-align: center; border:solid 1px #f2dede;" name="sort" value="{{ $list['sort_order'] }}" onchange="changeSort(this,{{ $list['sort_id'] }})"/>
                                 </td>
                                 <td>{{ $list['created_at'] }}</td>
                                 <td>
-                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $list['id'] }}', closeViaDimmer: 0, width: 400, height: 200}">修改</button>
+                                    <button class="am-btn am-btn-xs am-btn-success" data-am-modal="{target: '#doc-modal-{{ $list['sort_id'] }}', closeViaDimmer: 0, width: 400, height: 200}">修改</button>
                                     @include('include.admin._updateSort')
 
-                                    <a href="javascript:;" onclick="delSort({{ $list['id'] }})" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
+                                    <a href="javascript:;" onclick="delSort({{ $list['sort_id'] }})" class="am-btn am-btn-xs am-btn-danger" style="color:white;">删除</a>
                                     @include('include.admin._ajax_ins_up_del')
 
                                 </td>

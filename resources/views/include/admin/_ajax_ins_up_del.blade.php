@@ -1,8 +1,8 @@
 <script>
     //更新菜品分类排序
-    function changeSort(obj,id){
-        var sort = $(obj).val();
-        $.post("{{url('admin/menu-sort-order')}}",{'_token':'{{csrf_token()}}','id':id,'sort':sort},function(data){
+    function changeSort(obj,sort_id){
+        var sort_order = $(obj).val();
+        $.post("{{url('admin/menu-sort-order')}}",{'_token':'{{csrf_token()}}','sort_id':sort_id,'sort_order':sort_order},function(data){
             if(data.status=0){
                 location.href = location.href;
                 layer.msg(data.msg, {icon:5});
@@ -15,11 +15,11 @@
 
 
     //删除菜品分类
-    function delSort(id){
+    function delSort(sort_id){
         layer.confirm('您确定要删除码？',{
             btn:['确定','取消']
         },function(){
-            $.post("{{ url('admin/menu-sort-list') }}/"+id,{'_method':'get'},function(data){
+            $.post("{{ url('admin/menu-sort-list') }}/"+sort_id,{'_method':'get'},function(data){
                 if(data.status=0){
                     location.href = location.href;
                     layer.msg(data.msg, {icon:6});

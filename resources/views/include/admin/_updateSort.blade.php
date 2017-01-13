@@ -1,4 +1,4 @@
-<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-{{ $list['id'] }}">
+<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-{{ $list['sort_id'] }}">
     <div class="am-modal-dialog">
         <div class="am-modal-hd">
             <label>修改菜品类别</label>
@@ -11,8 +11,8 @@
                     <div class="am-form-group" style="text-align: left;">
                         <label for="doc-vld-name-2">菜品名称：</label>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="id" value="{{ $list['id'] }}">
-                        <input type="text" id="doc-vld-name-2" placeholder="输入菜品名称" name="title" value="{{ $list['title'] }}" required/>
+                        <input type="hidden" name="sort_id" value="{{ $list['sort_id'] }}">
+                        <input type="text" id="doc-vld-name-2" placeholder="输入菜品名称" name="sort_name" value="{{ $list['sort_name'] }}" required/>
                     </div>
                     <button class="am-btn am-btn-secondary" type="submit">提交</button>
                 </fieldset>
