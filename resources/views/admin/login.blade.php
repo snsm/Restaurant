@@ -24,8 +24,8 @@
         <fieldset>
 
         <div class="am-form-group">
-        {!! Form::label('mobile','手机号:',['for'=>'mobile']) !!}
-        {!! Form::number('mobile',null,['id'=>'mobile','placeholder'=>'输入手机号','required'=>'required','class'=>'js-pattern-mobile']) !!}
+        {!! Form::label('user_mobile','手机号:',['for'=>'user_mobile']) !!}
+        {!! Form::number('user_mobile',null,['id'=>'user_mobile','placeholder'=>'输入手机号','required'=>'required','class'=>'js-pattern-mobile']) !!}
         </div>
 
         <div class="am-form-group">

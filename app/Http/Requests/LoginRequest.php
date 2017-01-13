@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile' => 'required|max:11|regex:/^1[34578][0-9]{9}$/',
+            'user_mobile' => 'required|max:11|regex:/^1[34578][0-9]{9}$/',
             'password' => 'required|min:6',
         ];
     }
@@ -36,9 +36,9 @@ class LoginRequest extends FormRequest
      */
     public function messages(){
         return [
-            'mobile.required' => '手机号必填',
-            'mobile.regex' => '手机号格式错误',
-            'mobile.max' => '手机号不能大于11位',
+            'user_mobile.required' => '手机号必填',
+            'user_mobile.regex' => '手机号格式错误',
+            'user_mobile.max' => '手机号不能大于11位',
             'password.required'  => '手机号或密码错误',
         ];
     }

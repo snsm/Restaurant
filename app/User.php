@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'user_name','password','user_mobile','user_zsname','user_nickname','user_openid','user_sex','user_role','user_status','user_headimgurl'
     ];
 
     /**
@@ -41,9 +41,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function getSexTextAttribute()
+    public function getUserSexTextAttribute()
     {
-        return empty($this->sex) ? '' : self::sexLabelList()[$this->sex];
+        return empty($this->user_sex) ? '' : self::sexLabelList()[$this->user_sex];
     }
-
 }

@@ -19,16 +19,16 @@ class AdminController extends Controller
 
     public function signin(LoginRequest $request)
     {
-        $filed = filter_var($request->get('mobile'),FILTER_VALIDATE_EMAIL)? 'name':'mobile';
+        $filed = filter_var($request->get('user_mobile'),FILTER_VALIDATE_EMAIL)? 'user_name':'user_mobile';
 
-        $request->merge([$filed=>$request->get('mobile')]);
+        $request->merge([$filed=>$request->get('user_mobile')]);
 
         if(Auth::attempt($request->only($filed,'password'))){
 
-            $accessToken = [ 'accessToken' => str_random(60),'userMobile' => Auth::user()->mobile,];
+            $accessToken = [ 'accessToken' => str_random(60),'userMobile' => Auth::user()->user_mobile,];
             Cache::add('access_token',$accessToken,60);
 
-            if(Auth::user()->role==User::ROLE_MANAGE){
+            if(Auth::user()->user_role==User::ROLE_MANAGE){
                 return redirect('admin/index');
             }
             return redirect('admin/login')->with('message', '用户名或者密码错误！');

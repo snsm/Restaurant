@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->integer('user_status')->default(10);
             $table->string('user_headimgurl')->nullable();
             $table->string('user_name')->unique();
-            $table->string('user_password')->nullable();
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
