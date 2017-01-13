@@ -14,9 +14,10 @@ class CreateSortsTable extends Migration
     public function up()
     {
         Schema::create('sorts', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->comment('类别标题');
-            $table->integer('sort')->default(0)->comment('排序');
+            $table->increments('sort_id');
+            $table->string('sort_name');
+            $table->integer('sort_order')->default(0);
+            $table->integer('menu_id')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

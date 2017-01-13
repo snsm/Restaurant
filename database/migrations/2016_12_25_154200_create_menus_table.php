@@ -14,13 +14,13 @@ class CreateMenusTable extends Migration
     public function up()
     {
         Schema::create('menus', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->comment('标题');
-            $table->longText('description')->comment('描述');
-            $table->decimal('price')->comment('价格');
-            $table->string('pictrue')->comment('图片');
-            $table->integer('sorts_id')->comment('类别ID');
-            $table->integer('menu_order')->default(0)->comment('排序');
+            $table->increments('menu_id');
+            $table->string('menu_name');
+            $table->string('menu_description')->nullable();
+            $table->integer('menu_price');
+            $table->string('menu_pictrue')->nullable();
+            $table->integer('menu_order')->default(0);
+            $table->integer('menu_type')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -14,16 +14,17 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id')->comment('用户ID');
-            $table->string('openid')->unique()->comment('微信ID');
-            $table->string('nickname')->comment('微信昵称');
-            $table->string('name')->nullable()->comment('真实姓名');
-            $table->integer('sex')->nullable()->comment('性别');
-            $table->string('mobile')->nullable()->comment('手机号');
-            $table->string('password')->nullable()->comment('用户密码');
-            $table->tinyInteger('role')->default(10)->comment('用户角色');
-            $table->tinyInteger('status')->default(10)->comment('用户状态');
-            $table->string('headimgurl')->comment('用户头像');
+            $table->increments('user_id');
+            $table->string('user_openid')->nullable();
+            $table->string('user_nickname')->nullable();
+            $table->string('user_zsname')->nullable();
+            $table->string('user_sex')->nullable();
+            $table->string('user_mobile')->nullable();
+            $table->integer('user_role')->default(10);
+            $table->integer('user_status')->default(10);
+            $table->string('user_headimgurl')->nullable();
+            $table->string('user_name')->unique();
+            $table->string('user_password')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
