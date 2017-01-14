@@ -3,21 +3,28 @@
 @section('content')
     <div id="wrapper" class="viewer">
         <div id="sidebar-wrapper">
-            <div class="well sidebar-nav">
+            <div class="panel">
+               <div class="panel-body">
+                 鄱阳朋友圈全民餐厅 菜单
+                </div>
+            </div>
+            <div class="well sidebar-nav" style="margin-top: 50px;">
                 <nav id="J_menuList" class="nav nav-list">
                 </nav>
             </div>
         </div>
         <div id="page-content-wrapper" class="">
             <div class="page-content">
-                <div class="container" id="J_list_Container">
+                <div class="panel" style="width: 100%">
+                   <div class="panel-body"></div>
+                </div>
+                <div class="container" id="J_list_Container" style="padding-top: 50px;">
                 </div>
             </div>
         </div>
         <footer class="footFix footLeft">
             <button id="myOrder" class="btn_change">
-                菜篮子
-                <span class="num">9</span>
+                购物车
             </button>
         </footer>
     </div>

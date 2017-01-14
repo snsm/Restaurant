@@ -14,6 +14,7 @@
         .sidebar-nav nav {
             background-color: #ffffff;
             box-shadow: inset -10px 0px 40px #ffffff;
+            margin-left: -1px;
         }
         .sidebar-nav nav dl dd.active {
             color: #fff;
@@ -30,16 +31,15 @@
         .panel {
             width: 100%;
             margin-bottom: 3px;
-            border: 1px solid #f5f5f5;
+            border: 0px solid #f5f5f5;
             background-color: #f5f5f5;
             border-radius: 0px;
             -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
             position: fixed;
-            z-index: 1000;
-        }
-        .well,.row  {
-            margin-top: 50px;
+            z-index: 0;
+            color: #fff;
+            background-color: #52b13c
         }
         .sidebar-nav nav dl dd a {
             text-decoration: none;
@@ -72,6 +72,9 @@
         }
         .sidebar-nav nav dl dd {
             padding-right: 8px;
+        }
+        .foot-info .colred{
+            line-height: 18px;
         }
     </style>
 
