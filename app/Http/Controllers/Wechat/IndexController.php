@@ -10,9 +10,7 @@ use App\Menu;
 class IndexController extends Controller
 {
     public function Index(){
-        $sorts = (new Sort())->getSorts();
-        $menus = Menu::all();
-        return view('wechat.index',compact('sorts','menus'));
+        return view('wechat.index');
     }
 
     public function order(){

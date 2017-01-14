@@ -28,7 +28,22 @@ class Menu extends Model
         return $this->menuSorts();
     }
     protected function menuSorts(){
-        $menu_sorts= Sort::all();
+
+        $sort_menu = \DB::table('menus')->join('sorts','menus.menu_type','=','sorts.sort_id')->get();
+        $sort[]='';
+        foreach ($sort_menu as $menu_list){
+            $sort[$menu_list->sort_name][]=[
+                'id'=>$menu_list->menu_id,
+                'name'=>$menu_list->menu_name,
+                'cls'=>$menu_list->menu_description,
+                'price'=>$menu_list->menu_price,
+                'sels'=>$menu_list->menu_order,
+                'imageUrl'=>$menu_list->menu_pictrue ? 'http://'.Request::getHttpHost().'/build/images/'.$menu_list->menu_pictrue :'',
+            ];
+        }
+        return array_filter($sort);
+
+        /*$menu_sorts= Sort::all();
         $sort[]='';
         foreach($menu_sorts as $list){
             $menu = Menu::whereMenuType($list['sort_id'])->get();
@@ -43,7 +58,7 @@ class Menu extends Model
                 ];
             }
         }
-        return array_filter($sort);
+        return array_filter($sort);*/
     }
 
 }

@@ -11,7 +11,7 @@
         iG = iG||{};
     }
     $(function(){
-        setTimeout(function () { window.scrollTo(0, 1); }, 0);
+        setTimeout(function () { window.scrollTo(0, 1); }, 20);
 
         /*$.ajax({
             type:"get",
@@ -19,17 +19,18 @@
             url:"http://www.restaurant.skip.pw/api/menu-list",
             success:function(result){
                 //alert(result);
+                console.log(result);
                 iG.items = result;
                 init();//ajax成功后执行init();
             }
         });*/
 
-        /*setTimeout(function () {
+        setTimeout(function () {
          iG.items={!! json_encode((new \App\Menu())->menuList()) !!}
         init();//ajax成功后执行init();
-         }, 20);//模拟ajax请求时间*/
-        
-        setTimeout(function () {
+         }, 20);//模拟ajax请求时间
+
+        /*setTimeout(function () {
             iG.items={
                 "湘菜":[
                     {id:"2",name:"红烧肉",cls:"红烧肉好吃",price:"18",sels:"0",imageUrl:"http://www.restaurant.skip.pw/build/images/2017-01-13-23-58-10-5878f912ce40c.jpg"},
@@ -37,7 +38,7 @@
                 ],
             };
             init();//ajax成功后执行init();
-        }, 20);//模拟ajax请求时间
+        }, 20);//模拟ajax请求时间*/
 
 
 
