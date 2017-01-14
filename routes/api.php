@@ -16,3 +16,8 @@ use Illuminate\Http\Request;
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
+
+/* 菜单列表API */
+Route::get('/menu-list', function () {
+    return (new \App\Menu())->menuList();
+})->middleware('api');

@@ -13,46 +13,34 @@
     $(function(){
         setTimeout(function () { window.scrollTo(0, 1); }, 0);
 
-        /* setTimeout(function () {
-         iG.items={
-         "湘菜":[{id:"1",name:"纯瘦肉",cls:"肉品",price:"15",sels:"45",imageUrl:"images/1.jpg"},
-         {id:"2",name:"猪耳朵",cls:"肉品",price:"23",sels:"75",imageUrl:"images/2.jpg"},
-         {id:"3",name:"牛肉",cls:"肉品",price:"45",sels:"36",imageUrl:"images/3.jpg"},
-         {id:"4",name:"牛肉和牛肚",cls:"肉品",price:"85",sels:"26",imageUrl:"images/4.jpg"},
-         {id:"5",name:"排骨",cls:"肉品",price:"63",sels:"12",imageUrl:"images/5.jpg"},
-         {id:"6",name:"猪脚",cls:"肉品",price:"56",sels:"32",imageUrl:"images/6.jpg"}
-         ],
-         "川菜":[{id:"7",name:"罗非鱼",cls:"水产",price:"45",sels:"12",imageUrl:"images/7.jpg"},
-         {id:"8",name:"杭州虾",cls:"水产",price:"153",sels:"8",imageUrl:"images/8.jpg"},
-         {id:"9",name:"海鲜套餐",cls:"水产",price:"255",sels:"30",imageUrl:"images/9.jpg"},
-         {id:"10",name:"贝壳",cls:"水产",price:"188",sels:"8",imageUrl:"images/10.jpg"},
-         {id:"11",name:"青鱼",cls:"水产",price:"156",sels:"8",imageUrl:"images/11.jpg"},
-         {id:"12",name:"黄鱼",cls:"水产",price:"120",sels:"8",imageUrl:"images/12.jpg"}
-         ],
-         "粤菜":[{id:"13",name:"飘菜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/13.jpg"},
-         {id:"14",name:"苦瓜",cls:"蔬菜",price:"154",sels:"524",imageUrl:"images/14.jpg"},
-         {id:"15",name:"西红柿辣椒黄瓜套餐",cls:"蔬菜",price:"151",sels:"524",imageUrl:"images/15.jpg"},
-         {id:"16",name:"黄瓜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/16.jpg"},
-         {id:"17",name:"黄豆",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/17.jpg"},
-         {id:"18",name:"白苦瓜",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/18.jpg"},
-         {id:"19",name:"蔬菜套餐1",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/19.jpg"},
-         {id:"20",name:"蔬菜套餐2",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/20.jpg"},
-         {id:"20",name:"蔬菜套餐2",cls:"蔬菜",price:"152",sels:"524",imageUrl:"images/20.jpg"}
-         ],
-         "浙菜":[{id:"21",name:"大米",cls:"干货杂粮",price:"45",sels:"524",imageUrl:"images/21.jpg"},
-         {id:"22",name:"紫米",cls:"干货杂粮",price:"9",sels:"524",imageUrl:"images/22.jpg"},
-         {id:"23",name:"玉米",cls:"干货杂粮",price:"22",sels:"524",imageUrl:"images/23.jpg"}
-         ],
-         "闽菜":[{id:"24",name:"糕点",cls:"糕点",price:"152",sels:"12",imageUrl:"images/24.jpg"},
-         {id:"25",name:"糕点",cls:"糕点",price:"154",sels:"16",imageUrl:"images/25.jpg"},
-         {id:"26",name:"糕点",cls:"糕点",price:"151",sels:"18",imageUrl:"images/26.jpg"},
-         {id:"27",name:"糕点",cls:"糕点",price:"152",sels:"19",imageUrl:"images/27.jpg"},
-         {id:"28",name:"糕点",cls:"糕点",price:"152",sels:"23",imageUrl:"images/28.jpg"},
-         {id:"29",name:"糕点",cls:"糕点",price:"152",sels:"30",imageUrl:"images/29.jpg"}
-         ],
-         };
-         init();//ajax成功后执行init();
+        /*$.ajax({
+            type:"get",
+            dataType:"json",
+            url:"http://www.restaurant.skip.pw/api/menu-list",
+            success:function(result){
+                //alert(result);
+                iG.items = result;
+                init();//ajax成功后执行init();
+            }
+        });*/
+
+        /*setTimeout(function () {
+         iG.items={!! json_encode((new \App\Menu())->menuList()) !!}
+        init();//ajax成功后执行init();
          }, 20);//模拟ajax请求时间*/
+        
+        setTimeout(function () {
+            iG.items={
+                "湘菜":[
+                    {id:"2",name:"红烧肉",cls:"红烧肉好吃",price:"18",sels:"0",imageUrl:"http://www.restaurant.skip.pw/build/images/2017-01-13-23-58-10-5878f912ce40c.jpg"},
+                    {id:"3",name:"西红柿",cls:"西红柿",price:"8",sels:"0",imageUrl:"http://www.restaurant.skip.pw/build/images/2017-01-14-09-33-43-58797ff7c25af.jpg"},
+                ],
+            };
+            init();//ajax成功后执行init();
+        }, 20);//模拟ajax请求时间
+
+
+
 
         $("body").on("click",".list_id_respone",function(){
             iG["order"] = iG["order"]||{};
@@ -154,13 +142,12 @@
             }
         });
 
-        /*$("body").on("click","#J_menuList dd a",function(){
-         iG.indexMenu = $(this).attr("data_name");
-         $("#J_list_Container").html(listManger(iG.items));
-         $("#J_menuList .active").removeClass("active");
-         $(this).parent("dd").addClass("active");
-         });*/
-
+        $("body").on("click","#J_menuList dd a",function(){
+            iG.indexMenu = $(this).attr("data_name");
+            $("#J_list_Container").html(listManger(iG.items));
+            $("#J_menuList .active").removeClass("active");
+            $(this).parent("dd").addClass("active");
+        });
         $("#remote_order").click(function(){
             $(".nav-tabs li.active").removeClass("active");
             $(this).parent("li").addClass("active");
@@ -188,43 +175,41 @@
             $("#wrapper2").removeClass("hide").addClass("show");
         });
     });
-    /* function init(){
-     setMenu(iG.items);
-     $("#J_list_Container").html(listManger(iG.items));
-     $("#loadingView").addClass("hide");
-     }*/
+    function init(){
+        setMenu(iG.items);
+        $("#J_list_Container").html(listManger(iG.items));
+        $("#loadingView").addClass("hide");
+    }
 
-    /*function setMenu(_list){
-     iG.menu = [];
-     iG.indexMenu = (function(){
-     var menu;
-     var count = 0;
-     for(var i in _list){
-     if(count===0){
-     menu =  i;
-     }
-     count++;
-     iG.menu.push(i);
-     }
-     return menu;
-     })();
-     buildMenu(iG.menu);
-     }*/
+    function setMenu(_list){
+        iG.menu = [];
+        iG.indexMenu = (function(){
+            var menu;
+            var count = 0;
+            for(var i in _list){
+                if(count===0){
+                    menu =  i;
+                }
+                count++;
+                iG.menu.push(i);
+            }
+            return menu;
+        })();
+        buildMenu(iG.menu);
+    }
 
-    /*function buildMenu(_list){
-     var menuHtml = "<dl>";
-     var active;
-     for(var i in _list){
-     active = "";
-     if(_list[i]===iG.indexMenu)active = "active";
-     menuHtml += "<dd class=\""+active+"\"><a data_name=\""+ _list[i] +"\">"+ _list[i] +"</a> <h6 class='badge'>0</h6></dd>"
-     }
+    function buildMenu(_list){
+        var menuHtml = "<dl>";
+        var active;
+        for(var i in _list){
+            active = "";
+            if(_list[i]===iG.indexMenu)active = "active";
+            menuHtml += "<dd class=\""+active+"\"><a data_name=\""+ _list[i] +"\">"+ _list[i] +"</a></dd>"
 
-     menuHtml += "<dd class=\""+active+"\"><a>个人中心</a></dd>"
-
-     menuHtml += "</dl>";
-     $("#J_menuList").html(menuHtml);
-     }*/
+        }
+        menuHtml += "</dl>";
+        $("#J_menuList").html(menuHtml);
+    }
 
     function getIndex(_id){
         var indexList = iG.items[iG.indexMenu];
@@ -268,14 +253,14 @@
         result += "</div>";
         return result;
     }
-    /* function buildList(_list){
-     var result = "";
-     for(var i in _list){
-     result += "<div class=\"col-md-4 clearfix foot-items\"><div class=\"col-xs-4 foot-img\"><img src=\""+_list[i].imageUrl+"\" class=\"img-responsive\" alt=\"Responsive image\" data_id=\""+_list[i].id+"\" ></div><div class=\"col-xs-6 foot-info\"><p><strong>"+_list[i].name+"</strong></p><p class=\"colred\">"+_list[i].price+"元/份</p><p><small>"+_list[i].sels+"人买过</small></p></div><div class=\"col-xs-2 icons-pick foot-pick\"><div class=\"btn_wrap\"><button class=\"minus\" style=\"display: none;\"><strong></strong></button><i style=\"display: none;\">0</i><button class=\"list_add list_id_respone\" data_id=\""+_list[i].id+"\"><strong></strong></button><em class=\"fixBig  fake\"></em></div></div></div>"
-     //<button ontouchstart=\"\" class=\"list_id_respone button button-circle button-flat-primary fa fa-plus\" data_id=\""+_list[i].id+"\"></button>
-     }
-     return result;
-     }*/
+    function buildList(_list){
+        var result = "";
+        for(var i in _list){
+            result += "<div class=\"col-md-4 clearfix foot-items\"><div class=\"col-xs-4 foot-img\"><img src=\""+_list[i].imageUrl+"\" class=\"img-responsive\" alt=\"Responsive image\" data_id=\""+_list[i].id+"\" ></div><div class=\"col-xs-6 foot-info\"><p><strong>"+_list[i].name+"</strong></p><p class=\"colred\">"+_list[i].price+"元/份</p><p><small>"+_list[i].sels+"人买过</small></p></div><div class=\"col-xs-2 icons-pick foot-pick\"><div class=\"btn_wrap\"><button class=\"minus\" style=\"display: none;\"><strong></strong></button><i style=\"display: none;\">0</i><button class=\"list_add list_id_respone\" data_id=\""+_list[i].id+"\"><strong></strong></button><em class=\"fixBig  fake\"></em></div></div></div>"
+            //<button ontouchstart=\"\" class=\"list_id_respone button button-circle button-flat-primary fa fa-plus\" data_id=\""+_list[i].id+"\"></button>
+        }
+        return result;
+    }
     function buildOrder(_list){
         var result = "<div class=\"row\" id=\"J_order_Manager\"><div class=\"col-xs-12 clearfix board_content\"><div class=\"col-xs-4 title_contain\"><p class=\"menu_title \">菜篮子</p></div><div class=\"col-xs-2\"></div><div class=\"col-xs-3 title_contain\"><button class=\"button button-rounded button-flat-action\" id=\"addOrder\">选菜</button></div><div class=\"col-xs-3 title_contain\"><button id=\"clearOder\"class=\"button button-rounded button-flat\">清空</button></div></div></div>";
         var check = true;
