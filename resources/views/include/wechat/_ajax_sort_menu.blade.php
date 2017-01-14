@@ -11,7 +11,7 @@
         iG = iG||{};
     }
     $(function(){
-        setTimeout(function () { window.scrollTo(0, 1); }, 20);
+        setTimeout(function () { window.scrollTo(0, 1); }, 0);
 
         /*$.ajax({
             type:"get",
@@ -19,28 +19,29 @@
             url:"http://www.restaurant.skip.pw/api/menu-list",
             success:function(result){
                 //alert(result);
-                console.log(result);
                 iG.items = result;
                 init();//ajax成功后执行init();
             }
         });*/
 
         setTimeout(function () {
-         iG.items={!! json_encode((new \App\Menu())->menuList()) !!}
-        init();//ajax成功后执行init();
-         }, 20);//模拟ajax请求时间
-
-        /*setTimeout(function () {
             iG.items={
-                "湘菜":[
-                    {id:"2",name:"红烧肉",cls:"红烧肉好吃",price:"18",sels:"0",imageUrl:"http://www.restaurant.skip.pw/build/images/2017-01-13-23-58-10-5878f912ce40c.jpg"},
-                    {id:"3",name:"西红柿",cls:"西红柿",price:"8",sels:"0",imageUrl:"http://www.restaurant.skip.pw/build/images/2017-01-14-09-33-43-58797ff7c25af.jpg"},
+                <?php
+                    $sort= \App\Sort::all();
+                    $menu= \App\Menu::all();
+                    ?>
+                @foreach($sort as $list)
+                "{{ $list['sort_name'] }}":[
+                    @foreach($menu as $menu_list)
+                        @if($list['sort_id']==$menu_list['menu_type'])
+                    {id:"{{ $menu_list['menu_id'] }}",name:"{{ $menu_list['menu_name'] }}",cls:"{{ $menu_list['menu_description'] }}",price:"{{ $menu_list['menu_price'] }}",sels:"{{ $menu_list['menu_order'] }}",imageUrl:"{{ $menu_list['menu_pictrue'] ? 'http://'.\Request::getHttpHost().'/build/images/'.$menu_list['menu_pictrue'] :'' }}"},
+                        @endif
+                    @endforeach
                 ],
+                @endforeach
             };
             init();//ajax成功后执行init();
-        }, 20);//模拟ajax请求时间*/
-
-
+        }, 20);//模拟ajax请求时间
 
 
         $("body").on("click",".list_id_respone",function(){
