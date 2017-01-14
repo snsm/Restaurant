@@ -17,7 +17,7 @@
         <footer class="footFix footLeft">
             <button id="myOrder" class="btn_change">
                 菜篮子
-                <!--span class="num">9</span-->
+                <span class="num">9</span>
             </button>
         </footer>
     </div>

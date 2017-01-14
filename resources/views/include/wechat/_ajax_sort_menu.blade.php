@@ -27,13 +27,13 @@
         setTimeout(function () {
             iG.items={
                 <?php
-                    $sort= \App\Sort::all();
+                    $sort= (new \App\Sort())->getSorts();
                     $menu= \App\Menu::all();
                     ?>
                 @foreach($sort as $list)
-                "{{ $list['sort_name'] }}":[
+                "{{ $list['title'] }} {{ $list['count'] }}":[
                     @foreach($menu as $menu_list)
-                        @if($list['sort_id']==$menu_list['menu_type'])
+                        @if($list['id']==$menu_list['menu_type'])
                     {id:"{{ $menu_list['menu_id'] }}",name:"{{ $menu_list['menu_name'] }}",cls:"{{ $menu_list['menu_description'] }}",price:"{{ $menu_list['menu_price'] }}",sels:"{{ $menu_list['menu_order'] }}",imageUrl:"{{ $menu_list['menu_pictrue'] ? 'http://'.\Request::getHttpHost().'/build/images/'.$menu_list['menu_pictrue'] :'' }}"},
                         @endif
                     @endforeach
